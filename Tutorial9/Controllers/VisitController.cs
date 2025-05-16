@@ -16,41 +16,18 @@ namespace Tutorial9.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCustomerRentals(int id)
+        public async Task<IActionResult> GetVisit(int id)
         {
-            try
-            {
-                var res = await _dbService.DoSomethingAsync(id);
-                return Ok(res);
-            }
-            catch (NotFoundException e)
-            {
-                return NotFound(e.Message);
-            }
+        
+            var res = await _dbService.DoSomethingAsync(id);
+            return Ok(res);
+         
         }
 
-        [HttpPost("{id}/rentals")]
-        public async Task<IActionResult> AddNewRental(int id, CreateRentalRequestDto createRentalRequest)
+        [HttpPost("")]
+        public async Task<IActionResult> AddNewVisit()
         {
-            if (!createRentalRequest.Movies.Any())
-            {
-                return BadRequest("At least one item is required.");
-            }
-
-            try
-            {
-                await _dbService.AddNewRentalAsync(id, createRentalRequest);
-            }
-            catch (ConflictException e)
-            {
-                return Conflict(e.Message);
-            }
-            catch (NotFoundException e)
-            {
-                return NotFound(e.Message);
-            }
-            
-            return CreatedAtAction(nameof(GetCustomerRentals), new { id }, createRentalRequest);
+            _dbService.DoSomethingAsync1(id, createRentalRequest);           
         }    
     }
 }

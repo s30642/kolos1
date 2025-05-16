@@ -32,7 +32,7 @@ public class DbService : IDbService
         command.ExecuteNonQuery();
     }
 
-    public async Task ProcedureAsync()
+    public async Task DoSomethingAsync1()
     {
         await using SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Default"));
         await using SqlCommand command = new SqlCommand();
@@ -46,6 +46,5 @@ public class DbService : IDbService
         command.Parameters.AddWithValue("@Id", 2);
         
         await command.ExecuteNonQueryAsync();
-        
     }
 }

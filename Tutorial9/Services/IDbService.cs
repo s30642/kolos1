@@ -3,5 +3,5 @@
 public interface IDbService
 {
     Task DoSomethingAsync();
-    Task ProcedureAsync();
+    Task DoSomethingAsync1();
 }
